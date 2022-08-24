@@ -2,16 +2,23 @@ const tabArray = Array.from(document.querySelectorAll('.tab'));
 const tabContent = Array.from(document.querySelectorAll('.tab__content'));
 
 for (let i = 0; i < tabArray.length; i++) {
-    const tab = tabArray[i];
-  
-    tab.addEventListener('click', () => {
-        const tabActive = document.querySelector('.tab_active');
-        const tabContentActive = document.querySelector('.tab__content_active');
 
-        tab.classList.add('tab_active');
-        tabContent[tabArray.indexOf(tab)].classList.add('tab__content_active');
+    tabArray[i].addEventListener('click', () => {
 
-        tabActive.classList.remove('tab_active');
-        tabContentActive.classList.remove('tab__content_active');
+        for (let k = 0; k < tabArray.length; k++) {
+            tabArray[k].classList.remove('tab_active');
+        };
+
+        tabArray[i].classList.add('tab_active');
+        
+        for(let m = 0; m < tabContent.length; m++) {
+
+            if (tabContent[m].classList.contains('tab__content_active')) {
+                tabContent[m].classList.remove('tab__content_active');
+            };
+
+        tabContent[i].classList.add('tab__content_active');
+        };
     });
 }
+
